@@ -4,10 +4,10 @@ function getUpdatedUrl(params) {
 
     Object.keys(params).forEach(function(key) {
         var value = params[key];
-        if (value === '') {
-            url.searchParams.delete(key);
-        } else {
+        if (value) {
             url.searchParams.set(key, value);
+        } else {
+            url.searchParams.delete(key);
         }
     });
 
