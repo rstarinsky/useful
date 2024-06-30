@@ -1,0 +1,16 @@
+// add updated url with add a new parameter
+function getUpdatedUrl(params) {
+    var url = new URL(window.location.href);
+
+    Object.keys(params).forEach(function(key) {
+        var value = params[key];
+        if (value === '') {
+            url.searchParams.delete(key);
+        } else {
+            url.searchParams.set(key, value);
+        }
+    });
+
+    return url.toString();
+}
+getUpdatedUrl({ order: 'price', search: 'product_name' });
