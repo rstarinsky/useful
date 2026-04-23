@@ -1,5 +1,6 @@
 <?php
-// за основу взято скрипт от aiogram
+// за основу взято скрипт aiogram (python)
+// https://github.com/aiogram/aiogram/blob/dev-3.x/aiogram/utils/text_decorations.py
 
 // ——— Преобразует Telegram text + entities в HTML (offsets/length заданы в UTF-16 code units) ———
 function entitiesToHtml($text, $entities) {
