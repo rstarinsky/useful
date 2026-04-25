@@ -126,3 +126,26 @@ function buildUtf16ToUtf8Map($text) {
 
     return $map;
 }
+
+// пример вызова
+$text = "Текст с жирностью, курсимвом и подчеркиванием.";
+$entities = [
+  [
+    "offset" => 8,
+    "length" => 9,
+    "type" => "bold"
+  ],
+  [
+    "offset" => 19,
+    "length" => 9,
+    "type" => "italic"
+  ],
+  [
+    "offset" => 31,
+    "length" => 14,
+    "type" => "underline"
+  ]
+];
+
+$textHtml = entitiesToHtml($text, $entities);
+echo $textHtml;
