@@ -1,0 +1,39 @@
+<script>
+// Fix mobile tap inside all Perfect Scrollbar blocks:
+// allow link click on tap, but do not trigger it while scrolling.
+
+// исправление клика по ссылкам внутри Perfect Scrollbar на мобильных устройствах
+// (было: первый клик активировал блок, но не переходил по ссылке)
+
+document.addEventListener('DOMContentLoaded', () => {
+  setTimeout(function () {
+    document.querySelectorAll('.ps.ps--active-y').forEach(function (psBlock) {
+      let moved = false;
+      let startY = 0;
+
+      psBlock.addEventListener('touchstart', function (e) {
+        moved = false;
+        startY = e.touches[0].clientY;
+      }, true);
+
+      psBlock.addEventListener('touchmove', function (e) {
+        if (Math.abs(e.touches[0].clientY - startY) > 10) {
+          moved = true;
+        }
+      }, true);
+
+      psBlock.addEventListener('touchend', function (e) {
+        const link = e.target.closest('a');
+
+        if (!link || !psBlock.contains(link)) return;
+        if (moved) return;
+
+        e.preventDefault();
+        e.stopPropagation();
+
+        window.location.href = link.href;
+      }, true);
+    });
+  }, 500);
+});
+</script>
